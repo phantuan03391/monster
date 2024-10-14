@@ -13,7 +13,9 @@ import com.kyo.monster.ui.component.AppBottomBar
 import com.kyo.monster.ui.component.AppNavHost
 import com.kyo.monster.ui.navigation.Screen
 import com.kyo.monster.ui.theme.MonsterTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,9 @@ class MainActivity : ComponentActivity() {
                     AppNavHost(
                         navController = navController,
                         startDestination = Screen.Login.route,
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     )
                 }
             }

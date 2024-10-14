@@ -12,41 +12,45 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kyo.monster.ui.navigation.BottomNavItem
+import com.kyo.monster.ui.navigation.Screen
 
 @Composable
 fun AppBottomBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+    val showBottomBar = currentDestination?.route != Screen.Login.route
 
     val items = listOf(
         BottomNavItem.Home,
         BottomNavItem.Settings,
     )
 
-    NavigationBar {
-        items.forEach { bottomNavItem ->
-            val selected =
-                currentDestination?.hierarchy?.any { it.route == bottomNavItem.route } == true
-            NavigationBarItem(
-                selected = selected,
-                onClick = {
-                    navController.navigate(bottomNavItem.route) {
-                        // Pop up to the start destination of the graph to
-                        // avoid building up a large stack of destinations
-                        // on the back stack as users select items
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+    if (showBottomBar) {
+        NavigationBar {
+            items.forEach { bottomNavItem ->
+                val selected =
+                    currentDestination?.hierarchy?.any { it.route == bottomNavItem.route } == true
+                NavigationBarItem(
+                    selected = selected,
+                    onClick = {
+                        navController.navigate(bottomNavItem.route) {
+                            // Pop up to the start destination of the graph to
+                            // avoid building up a large stack of destinations
+                            // on the back stack as users select items
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            // Avoid multiple copies of the same destination when
+                            // re-selecting the same item
+                            launchSingleTop = true
+                            // Restore state when re-selecting a previously selected item
+                            restoreState = true
                         }
-                        // Avoid multiple copies of the same destination when
-                        // re-selecting the same item
-                        launchSingleTop = true
-                        // Restore state when re-selecting a previously selected item
-                        restoreState = true
-                    }
-                },
-                icon = { Icon(bottomNavItem.icon, contentDescription = null) },
-                label = { Text(stringResource(bottomNavItem.title)) }
-            )
+                    },
+                    icon = { Icon(bottomNavItem.icon, contentDescription = null) },
+                    label = { Text(stringResource(bottomNavItem.title)) }
+                )
+            }
         }
     }
 }
