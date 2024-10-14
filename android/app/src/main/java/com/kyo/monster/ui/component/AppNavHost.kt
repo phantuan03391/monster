@@ -6,9 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kyo.monster.ui.navigation.Screen
-import com.kyo.monster.ui.screen.HomeScreen
 import com.kyo.monster.ui.screen.LoginScreen
 import com.kyo.monster.ui.screen.SettingsScreen
+import com.kyo.monster.ui.screen.home.HomeScreen
 
 @Composable
 fun AppNavHost(
@@ -30,7 +30,7 @@ fun AppNavHost(
             )
         }
         composable(Screen.Home.route) {
-            HomeScreen(modifier)
+            HomeScreen(modifier = modifier)
         }
         composable(Screen.Settings.route) {
             SettingsScreen(modifier)
