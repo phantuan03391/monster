@@ -5,4 +5,7 @@
     <string name="login_button">Login</string>
     <string name="home_title">Home</string>
     <string name="settings_title">Settings</string>
+
+    <string name="hp_value">HP: %d</string>
+    <string name="rate_value">Rating: $s</string>
 </resources>
