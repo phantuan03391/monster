@@ -81,9 +81,7 @@ fun HomeMonsterListSection(monsters: List<Monster>) {
 @Composable
 fun MonsterCard(monster: Monster) {
     Box(
-        modifier = Modifier
-            .height(400.dp)
-            .padding(top = 8.dp),
+        modifier = Modifier.height(400.dp),
         contentAlignment = Alignment.BottomStart
     ) {
         Surface(shape = RoundedCornerShape(20.dp)) {

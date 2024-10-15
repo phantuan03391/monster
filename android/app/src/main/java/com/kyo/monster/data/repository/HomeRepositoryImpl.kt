@@ -66,6 +66,13 @@ class HomeRepositoryImpl @Inject constructor() : IHomeRepository {
                 type = listOf(MonsterType.FLYING),
                 rate = MonsterRating.VERY_GOOD,
                 image = R.drawable.img_zephyr
+            ), Monster(
+                id = "8",
+                name = "Abyssal",
+                hp = 88,
+                type = listOf(MonsterType.WATER, MonsterType.DARK),
+                rate = MonsterRating.VERY_GOOD,
+                image = R.drawable.img_abyssal
             )
         )
     }
