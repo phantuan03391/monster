@@ -1,14 +1,12 @@
 package com.kyo.monster.data.model
 
-import androidx.annotation.DrawableRes
-
 data class Monster(
     val id: String,
     val name: String,
     val hp: Int,
     val type: List<MonsterType>,
     val rate: MonsterRating,
-    @DrawableRes val image: Int
+    val image: String
 )
 
 enum class MonsterType {

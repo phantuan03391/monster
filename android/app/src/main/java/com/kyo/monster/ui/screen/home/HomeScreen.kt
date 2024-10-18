@@ -1,7 +1,6 @@
 package com.kyo.monster.ui.screen.home
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -23,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil.compose.AsyncImage
 import com.kyo.monster.R
 import com.kyo.monster.data.model.Monster
 import com.kyo.monster.data.model.MonsterRating
@@ -85,11 +84,7 @@ fun MonsterCard(monster: Monster) {
         contentAlignment = Alignment.BottomStart
     ) {
         Surface(shape = RoundedCornerShape(20.dp)) {
-            Image(
-                painterResource(monster.image),
-                contentDescription = null,
-                contentScale = ContentScale.Crop
-            )
+            AsyncImage(model = monster.image, contentDescription = null, contentScale = ContentScale.Crop)
         }
         Surface(
             modifier = Modifier
@@ -145,14 +140,14 @@ private fun HomeScreenContentPreview() {
             hp = 100,
             type = listOf(MonsterType.DRAGON, MonsterType.DARK),
             rate = MonsterRating.EXCELLENT,
-            image = R.drawable.img_shadow
+            image = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_shadow.jpg?alt=media&token=f5e7b7bd-5fe0-4a33-9ba9-c6695d3d6a01"
         ), Monster(
             id = "5",
             name = "Solara",
             hp = 100,
             type = listOf(MonsterType.DRAGON, MonsterType.LIGHT),
             rate = MonsterRating.EXCELLENT,
-            image = R.drawable.img_solara
+            image = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_solara.jpg?alt=media&token=aacd930b-7439-4232-9a6c-99b6ca18cb5e"
         )
     )
     val homeUiState = HomeUiState(monsters = monsters)
