@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Kyo Monster. All rights reserved.
- */
-
 package com.kyo.monster.ui.theme
 
 import androidx.compose.material3.Typography
