@@ -4,6 +4,8 @@ ktor-version = "3.0.0"
 kotlin-version = "2.0.21"
 logback-version = "1.4.14"
 koin-version = "3.4.1"
+serialization-plugin = "2.0.21"
+serialization-dep = "1.7.3"
 
 [libraries]
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktor-version" }
@@ -18,7 +20,9 @@ ktor-server-test-host = { module = "io.ktor:ktor-server-test-host-jvm", version.
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin-version" }
 koin-ktor = { group = "io.insert-koin", name = "koin-ktor", version.ref = "koin-version" }
 koin-logger-slf4j = { group = "io.insert-koin", name = "koin-logger-slf4j", version.ref = "koin-version" }
+serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json" , version.ref = "serialization-dep" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor-version" }
+org-jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization" , version.ref = "serialization-plugin" }

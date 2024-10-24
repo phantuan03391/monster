@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
+    alias(libs.plugins.org.jetbrains.kotlin.serialization)
 }
 
 group = "com.example"
@@ -30,6 +30,8 @@ dependencies {
     implementation(libs.logback.classic)
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
+
+    implementation(libs.serialization)
 
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
