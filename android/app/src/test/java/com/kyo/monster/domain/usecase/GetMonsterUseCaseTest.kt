@@ -3,7 +3,7 @@ package com.kyo.monster.domain.usecase
 import com.kyo.monster.domain.model.Monster
 import com.kyo.monster.domain.model.MonsterRating
 import com.kyo.monster.domain.model.MonsterType
-import com.kyo.monster.domain.repository.IHomeRepository
+import com.kyo.monster.domain.repository.MonsterRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
@@ -26,7 +26,7 @@ import kotlin.test.assertFailsWith
 class GetMonsterUseCaseTest {
 
     @MockK
-    private lateinit var mockRepository: IHomeRepository
+    private lateinit var mockRepository: MonsterRepository
 
     private lateinit var getMonstersUseCase: GetMonstersUseCase
 

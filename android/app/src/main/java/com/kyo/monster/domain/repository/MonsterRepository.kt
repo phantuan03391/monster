@@ -2,6 +2,6 @@ package com.kyo.monster.domain.repository
 
 import com.kyo.monster.domain.model.Monster
 
-interface IHomeRepository {
+interface MonsterRepository {
     suspend fun getMonsters(): Result<List<Monster>>
 }
