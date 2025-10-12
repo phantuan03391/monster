@@ -22,6 +22,16 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+        // This line tells Gradle to use the JUnit 5 platform to run your unit tests
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -68,11 +78,13 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     // test
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.bundles.test.unit)
+    testRuntimeOnly(libs.junit.jupiter.engine)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.mockk)
+
 }
