@@ -1,8 +1,8 @@
 package com.kyo.monster.ui.screen.home
 
-import com.kyo.monster.domain.model.Monster
+import com.kyo.monster.ui.model.MonsterUiModel
 
 data class HomeUiState(
     val isLoading: Boolean = false,
-    val monsters: List<Monster> = emptyList()
+    val monsters: List<MonsterUiModel> = emptyList()
 )

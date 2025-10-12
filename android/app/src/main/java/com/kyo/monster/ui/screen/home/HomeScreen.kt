@@ -32,9 +32,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.kyo.monster.R
-import com.kyo.monster.domain.model.Monster
 import com.kyo.monster.domain.model.MonsterRating
-import com.kyo.monster.domain.model.MonsterType
+import com.kyo.monster.ui.model.MonsterUiModel
 import com.kyo.monster.util.findActivity
 
 @Composable
@@ -69,7 +68,7 @@ fun HomeScreenContent(homeUiState: HomeUiState, modifier: Modifier) {
 }
 
 @Composable
-fun HomeMonsterListSection(monsters: List<Monster>) {
+fun HomeMonsterListSection(monsters: List<MonsterUiModel>) {
     LazyColumn(modifier = Modifier.padding(top = 8.dp, start = 24.dp, end = 24.dp)) {
         items(monsters, key = { it.id }) { monster ->
             MonsterCard(monster)
@@ -78,14 +77,14 @@ fun HomeMonsterListSection(monsters: List<Monster>) {
 }
 
 @Composable
-fun MonsterCard(monster: Monster) {
+fun MonsterCard(monster: MonsterUiModel) {
     Box(
         modifier = Modifier.height(400.dp),
         contentAlignment = Alignment.BottomStart
     ) {
         Surface(shape = RoundedCornerShape(20.dp)) {
             AsyncImage(
-                model = monster.image,
+                model = monster.imageUrl,
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
@@ -114,7 +113,7 @@ fun MonsterCard(monster: Monster) {
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    text = stringResource(R.string.hp_value, monster.hp),
+                    text = stringResource(R.string.hp_value, monster.hpText),
                     color = Color.White,
                     fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                     fontWeight = FontWeight.Bold,
@@ -122,7 +121,7 @@ fun MonsterCard(monster: Monster) {
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    text = monster.rate.toString(),
+                    text = monster.ratingText,
                     color = Color.White,
                     fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                     fontWeight = FontWeight.Bold,
@@ -138,20 +137,18 @@ fun MonsterCard(monster: Monster) {
 @Composable
 private fun HomeScreenContentPreview() {
     val monsters = listOf(
-        Monster(
+        MonsterUiModel(
             id = "4",
             name = "Shadow",
-            hp = 100,
-            types = listOf(MonsterType.DRAGON, MonsterType.DARK),
-            rate = MonsterRating.EXCELLENT,
-            image = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_shadow.jpg?alt=media&token=f5e7b7bd-5fe0-4a33-9ba9-c6695d3d6a01"
-        ), Monster(
+            hpText = "100",
+            ratingText = MonsterRating.EXCELLENT.name,
+            imageUrl = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_shadow.jpg?alt=media&token=f5e7b7bd-5fe0-4a33-9ba9-c6695d3d6a01"
+        ), MonsterUiModel(
             id = "5",
             name = "Solara",
-            hp = 100,
-            types = listOf(MonsterType.DRAGON, MonsterType.LIGHT),
-            rate = MonsterRating.EXCELLENT,
-            image = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_solara.jpg?alt=media&token=aacd930b-7439-4232-9a6c-99b6ca18cb5e"
+            hpText = "100",
+            ratingText = MonsterRating.EXCELLENT.name,
+            imageUrl = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_solara.jpg?alt=media&token=aacd930b-7439-4232-9a6c-99b6ca18cb5e"
         )
     )
     val homeUiState = HomeUiState(monsters = monsters)
