@@ -1,6 +1,6 @@
 package com.kyo.monster.ui.screen.home
 
-import com.kyo.monster.data.model.Monster
+import com.kyo.monster.domain.model.Monster
 
 data class HomeUiState(
     val isLoading: Boolean = false,

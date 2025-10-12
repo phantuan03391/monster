@@ -32,15 +32,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.kyo.monster.R
-import com.kyo.monster.data.model.Monster
-import com.kyo.monster.data.model.MonsterRating
-import com.kyo.monster.data.model.MonsterType
+import com.kyo.monster.domain.model.Monster
+import com.kyo.monster.domain.model.MonsterRating
+import com.kyo.monster.domain.model.MonsterType
 import com.kyo.monster.util.findActivity
 
 @Composable
 fun HomeScreen(
+    modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     BackHandler {
@@ -63,7 +63,7 @@ fun HomeScreenContent(homeUiState: HomeUiState, modifier: Modifier) {
         )
 
         HomeMonsterListSection(
-            homeUiState.monsters
+            monsters = homeUiState.monsters
         )
     }
 }
@@ -84,7 +84,11 @@ fun MonsterCard(monster: Monster) {
         contentAlignment = Alignment.BottomStart
     ) {
         Surface(shape = RoundedCornerShape(20.dp)) {
-            AsyncImage(model = monster.image, contentDescription = null, contentScale = ContentScale.Crop)
+            AsyncImage(
+                model = monster.image,
+                contentDescription = null,
+                contentScale = ContentScale.Crop
+            )
         }
         Surface(
             modifier = Modifier
@@ -138,14 +142,14 @@ private fun HomeScreenContentPreview() {
             id = "4",
             name = "Shadow",
             hp = 100,
-            type = listOf(MonsterType.DRAGON, MonsterType.DARK),
+            types = listOf(MonsterType.DRAGON, MonsterType.DARK),
             rate = MonsterRating.EXCELLENT,
             image = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_shadow.jpg?alt=media&token=f5e7b7bd-5fe0-4a33-9ba9-c6695d3d6a01"
         ), Monster(
             id = "5",
             name = "Solara",
             hp = 100,
-            type = listOf(MonsterType.DRAGON, MonsterType.LIGHT),
+            types = listOf(MonsterType.DRAGON, MonsterType.LIGHT),
             rate = MonsterRating.EXCELLENT,
             image = "https://firebasestorage.googleapis.com/v0/b/monster-7b6f3.appspot.com/o/monster-images%2Fimg_solara.jpg?alt=media&token=aacd930b-7439-4232-9a6c-99b6ca18cb5e"
         )
